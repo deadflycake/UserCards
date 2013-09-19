@@ -1,10 +1,13 @@
-Exercise 2 - Card Boards
+Rally User Department Assignment Board
 =========================
 
 ## Overview
 
-1. Make an awesome [cardboard](https://help.rallydev.com/apps/2.0rc1/doc/#!/example/Cardboard) showing stories.
-1. Customize your board to display
-    1. Add the card config option to your board with the default xtype the same as the one specified in CustomCard.js
-    1. Add a css class to the card `parented` to the card if the record passed has a parent.
-1. Create a board with customized columns.
+This is a Rally card board that allows you to drag User cards to Department columns.
+
+The cards are highlighted yellow for Subscription Admin users (as these can only be updated by other Subscription Admins) and show the following fields (when set):
+- Display Name
+- User Name
+- Email Address
+
+Some hackery is required to show the user profile image as the card is wired to show the image for the Owner and Users do not have an Owner...
