@@ -17,18 +17,23 @@
     launch: function() {
         var cardBoardConfig = {
             xtype: 'rallycardboard',
-            types: ['User Story', 'Defect'],
-            attribute: "ScheduleState", 
+            types: ['User'],
+            attribute: "Department", 
             cardConfig:{
                 xtype: 'customcard'
-             },
-            columns: [{
-                xtype: 'rallycardboardcolumn',
-                value: 'Defined'
             },
-            {   xtype: 'rallycardboardcolumn',
-                value: 'Completed'
-            }]
+            enableCrossColumnRanking: false,
+            enableRanking: false,
+            storeConfig: {
+                sorters: [{
+                    property: 'ObjectID',
+                    direction: 'ASC'
+                    }],
+                filters: [{
+                    property: 'Disabled',
+                    value: false
+                    }]
+            }
          };
 
         this.add(cardBoardConfig);
@@ -47,20 +52,21 @@ Ext.define('App.MyCard', {
     inheritableStatics: {
         //This list of fields you expect hydrated in the records. This information is passed along to the Rally server and assures that
         getFetchFields: function() {
-            return ['Owner', 'FormattedID', 'Blocked', 'Ready', 'Name', 'Tags', 'DisplayColor',"Parent"];
+            return ['UserName', 'EmailAddress', 'DisplayName', 'SubscriptionAdmin'];
         }
     },
     
     initComponent:function(){
-        this.addField("Tags");
-        this.addField("Parent");
-        if(this.record.get("Parent")) {
-            console.log(this.record.get("FormattedID"));
-            console.log(this.record.get("Parent"));
-            this.addCls("parented");
+        this.addField('DisplayName');
+        this.addField('EmailAddress');
+        this.addField('UserName');
+        if(this.record.get('SubscriptionAdmin')) {
+            this.addCls("subscription-admin");
         }
+        
+        // The line below stops errors that will throw IE as something keeps wanting the card to show its fancy popup button things
+        this.showIconsAndHighlightBorder=false; 
         this.callParent(arguments);
-        console.log(this.record.data)
     }
     
     
@@ -85,8 +91,8 @@ Ext.define('App.MyCard', {
 .rui-card .artifact-color{
     background-color: #35b2e4 !important;
 }
-.rui-card.parented .artifact-color{
-    background-color: #D08AAF !important;
+.rui-card.subscription-admin .artifact-color{
+    background-color: #EEF52F !important;
 }
     </style>
 </head>
