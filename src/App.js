@@ -16,8 +16,14 @@ Ext.define('CustomApp', {
             enableCrossColumnRanking: false,
             enableRanking: false,
             storeConfig: {
-                property: 'ObjectID',
-                direction: 'ASC'
+                sorters: [{
+                    property: 'ObjectID',
+                    direction: 'ASC'
+                    }],
+                filters: [{
+                    property: 'Disabled',
+                    value: false
+                    }]
             }
          };
 

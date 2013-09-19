@@ -10,18 +10,17 @@ Ext.define('App.MyCard', {
     inheritableStatics: {
         //This list of fields you expect hydrated in the records. This information is passed along to the Rally server and assures that
         getFetchFields: function() {
-            return ['UserName'];
+            return ['UserName', 'UserPermissions', 'SubscriptionAdmin', 'UserProfile'];
         }
     },
     
     initComponent:function(){
         this.addField("UserName");
-        // this.addField("Parent");
-        // if(this.record.get("Parent")) {
-        //     console.log(this.record.get("FormattedID"));
-        //     console.log(this.record.get("Parent"));
-        //     this.addCls("parented");
-        // }
+        this.addField("UserPermissions");
+        console.log(this.record.data);
+        if(this.record.get("SubscriptionAdmin")) {
+            this.addCls("subscription-admin");
+        }
         this.callParent(arguments);
         console.log(this.record.data);
     }
