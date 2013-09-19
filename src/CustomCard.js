@@ -10,19 +10,21 @@ Ext.define('App.MyCard', {
     inheritableStatics: {
         //This list of fields you expect hydrated in the records. This information is passed along to the Rally server and assures that
         getFetchFields: function() {
-            return ['UserName', 'UserPermissions', 'SubscriptionAdmin', 'UserProfile'];
+            return ['UserName', 'EmailAddress', 'DisplayName'];
         }
     },
     
     initComponent:function(){
-        this.addField("UserName");
-        this.addField("UserPermissions");
-        console.log(this.record.data);
+        this.addField('DisplayName');
+        this.addField('EmailAddress');
+        this.addField('UserName');
         if(this.record.get("SubscriptionAdmin")) {
             this.addCls("subscription-admin");
         }
+        
+        // The line below stops errors that will throw IE as something keeps wanting the card to show its fancy popup button things
+        this.showIconsAndHighlightBorder=false; 
         this.callParent(arguments);
-        console.log(this.record.data);
     }
     
     
