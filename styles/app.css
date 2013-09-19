@@ -1,0 +1,12 @@
+.x-panel-body-default {
+     /* Add app styles here !! */
+     border-style:none;
+}
+
+
+.rui-card .artifact-color{
+    background-color: #35b2e4 !important;
+}
+.rui-card.parented .artifact-color{
+    background-color: #D08AAF !important;
+}
