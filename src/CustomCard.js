@@ -21,7 +21,8 @@ Ext.define('App.MyCard', {
         if(this.record.get('SubscriptionAdmin')) {
             this.addCls("subscription-admin");
         }
-        
+        var data = this.record.data;
+        data.Owner = Ext.clone(data);
         // The line below stops errors that will throw IE as something keeps wanting the card to show its fancy popup button things
         this.showIconsAndHighlightBorder=false; 
         this.callParent(arguments);

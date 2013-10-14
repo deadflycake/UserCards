@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Son of Son of Exercise 2</title>
+    <title>User Cards</title>
 
     <script type="text/javascript" src="/apps/2.0rc1/sdk.js"></script>
 
     <script type="text/javascript">
         Rally.onReady(function () {
-                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",items:{html:'<a href="https://help.rallydev.com/apps/2.0rc1/doc/#!/api/Rally.ui.cardboard.CardBoard">Hint!<a>'},launch:function(){var cardBoardConfig={xtype:"rallycardboard",types:["User"],attribute:"Department",cardConfig:{xtype:"customcard"},enableCrossColumnRanking:!1,enableRanking:!1,storeConfig:{sorters:[{property:"ObjectID",direction:"ASC"}],filters:[{property:"Disabled",value:!1}]}};this.add(cardBoardConfig)}});
-                Ext.define("App.MyCard",{extend:"Rally.ui.cardboard.Card",alias:"widget.customcard",record:null,inheritableStatics:{getFetchFields:function(){return["UserName","EmailAddress","DisplayName","SubscriptionAdmin"]}},initComponent:function(){this.addField("DisplayName"),this.addField("EmailAddress"),this.addField("UserName"),this.record.get("SubscriptionAdmin")&&this.addCls("subscription-admin"),this.showIconsAndHighlightBorder=!1,this.callParent(arguments)}});
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){var cardBoardConfig={xtype:"rallycardboard",types:["User"],attribute:"Department",cardConfig:{xtype:"customcard"},enableCrossColumnRanking:!1,enableRanking:!1,storeConfig:{sorters:[{property:"ObjectID",direction:"ASC"}],filters:[{property:"Disabled",value:!1}]}};this.add(cardBoardConfig)}});
+                Ext.define("App.MyCard",{extend:"Rally.ui.cardboard.Card",alias:"widget.customcard",record:null,inheritableStatics:{getFetchFields:function(){return["UserName","EmailAddress","DisplayName","SubscriptionAdmin"]}},initComponent:function(){this.addField("DisplayName"),this.addField("EmailAddress"),this.addField("UserName"),this.record.get("SubscriptionAdmin")&&this.addCls("subscription-admin");var data=this.record.data;data.Owner=Ext.clone(data),this.showIconsAndHighlightBorder=!1,this.callParent(arguments)}});
 
             Rally.launchApp('CustomApp', {
-                name:"Son of Son of Exercise 2",
+                name:"User Cards",
 	            parentRepos:"ferentchak/RallyCertifiedDeveloperExercise1,RallyCommunity/RallyCertifiedDeveloperExercise2,deadflycake/Ex2"
             });
 
